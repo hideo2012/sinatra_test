@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Modal Test</title>
+		<style>
+#modal::backdrop { 
+	background-color: rgba(255, 0,0,0.2);
+}
+		</style>
+
+	<script>
+		const openModal = () => { 
+			document.getElementById('modal').showModal();
+		}
+		const closeModal = () => { 
+			document.getElementById('modal').close();
+		}
+
+
+		const openDialog = () => { 
+			document.getElementById('dialog').show();
+		}
+		const closeDialog = () => { 
+			document.getElementById('dialog').close();
+		}
+
+	</script>
+	</head>
+
+	<body>
+		<button onClick={openDialog()}> Opne Dialog </button>
+		<dialog id="dialog">
+			<p>This is dialog.</p>
+			<button onClick={closeDialog()}> Close </button>
+		</dialog>
+
+
+		<button onClick={openModal()}> Opne Modal </button>
+		<dialog id="modal">
+			<p>This is modal.</p>
+			<button onClick={closeModal()}> Close </button>
+		</dialog>
+
+		<button type="button" popovertarget="popover_content" >シンプルモーダル表示</button>
+		<div id="popover_content" popover style="background-color: yellow;">
+			<p>HTMLのみでモーダルが表示されました</p>
+		</div>
+
+	</body>
+</html>
+

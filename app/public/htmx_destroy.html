@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HTMXのテスト">
+  <script src="https://unpkg.com/htmx.org@1.9.12"
+    integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+  document.addEventListener( "htmx:confirm", (e)=> {
+    if (!e.target.matches("[confirm-with-sweet-alert='true']")) return
+    e.preventDefault();
+    swal({ 
+      title: "Proceed?",
+      text: `I ask you... ${ e.detail.question }`,
+      icon: "warning",
+	buttons: true,
+      }).then( (willDelete)=> {
+       if (willDelete) e.detail.issueRequest(true);
+      })
+  })
+  </script>
+  <title>HTMXテスト Destroy somethng</title>
+</head>
+<body>
+  <h1>HTMXテスト</h1>
+  <button 
+    hx-trigger="confirmed" 
+    hx-post="/htmx/destroy" 
+    hx-target="#message" 
+    hx-swap="innerHTML"
+    onClick='swal({
+    	title: "Are you sure?",
+    	text: "realy?",
+    	icon: "warning",
+    	buttons: true,
+    }).then( (willDelete) => {
+    	if (willDelete) { htmx.trigger(this, "confirmed"); }
+    });' 
+ >Delete Something...
+ </button>
+ <div id="message"></div>
+
+ <hr/>
+
+ <h1>HTMXテスト2</h1>
+  <button 
+    hx-post="/htmx/destroy" 
+    hx-confirm="削除していいの？" 
+    confirm-with-sweet-alert="true"
+    hx-target="#message2" 
+    hx-swap="innerHTML"
+  >Delete Something...
+ </button>
+ <div id="message2"></div>
+
+</body>
+</html>

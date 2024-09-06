@@ -1,0 +1,3 @@
+---
+BUNDLE_CONFIG: "set path vendor/bundle"
+BUNDLE_PATH: "vendor/bundle"

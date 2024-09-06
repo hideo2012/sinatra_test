@@ -1,0 +1,13 @@
+services:
+  web:
+    container_name: sinatra-cnt02
+    image: sinatra-app-img-02
+    build: .
+    ports:
+      - "4567:4567"
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+    tty: true
+

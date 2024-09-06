@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "sinatra"
+gem "rackup"
+gem "sinatra-contrib"
+gem "redcarpet"
+
+gem "sqlite3"
+gem "sinatra-activerecord"
+gem "rake", '13.0.0'
+#gem "rake"
+#gem "tux"
+#gem "sinatra-rax"
+
+#gem "activerecord"
+#gem "puma"
