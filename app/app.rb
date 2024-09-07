@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require './model'
+#require 'json'
 
 =begin
 require 'bundler'
@@ -47,7 +48,13 @@ end
 
 get '/json' do
   @messages = Message.all
-  @messages.to_json
+  outmsg = ""
+  @messages.each do |m|
+    outmsg << JSON.pretty_generate(m.attributes).gsub(/\R/, "<br>")
+    outmsg << " <br>"
+  end
+  outmsg
+  #@messages.to_json
 end
 
 get '/users' do
