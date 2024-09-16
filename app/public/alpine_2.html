@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HTMXのテスト">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <title>Alpine.jsテスト2</title>
+</head>
+<body>
+  <h1>Alpine.js 5分で説明するよ</h1>
+
+  <div x-data="{ count: 0 }">
+	  <button x-on:click="count++">カウントが増える</button>
+	  <span x-text="count"></span>
+  </div>
+
+  <br/><hr>
+
+  <div x-data="{ open:false }">
+	  <button x-on:click="open = !open" 
+       		x-text="open ? 'Close' : 'Open'">
+	  </button><br/><br/>
+	  <span
+	  	x-show="open"
+	  	style="border: solid black 1px; padding: 10px; background-color: yellow;"
+	  >開いたよ</span>
+	  
+  </div>
+
+  <br/><hr>
+
+  <div x-data="{ 
+	  open: false,
+	  toggle() {
+	  	this.open = ! this.open
+	  },
+  }">
+	  <button @click="toggle">表示</button> 
+	  <br/><br/>
+	  <span
+	  	x-show="open"
+	  	style="border: solid black 1px; padding: 10px; background-color: lightgrey;"
+	  >やっほー</span>
+	  
+  </div>
+
+  <br/><hr>
+
+  <div x-data="{datas:
+	[ 
+		{
+			id: 1,
+			name: 'ichoro',
+		},
+		{
+			id: 2,
+			name: 'ziro',
+		},
+		{
+			id: 3,
+			name: 'saburo',
+		},
+	
+	]
+   }">
+	  <template x-for="data in datas" :key="data.id">
+		  <p x-text="data.name"></p>
+	  </template>
+  </div>
+
+
+
+  <!-- 	  	@click.away="open = false"
+  -->
+  <br/><hr>
+
+  <div x-data="{ select: '' }">
+	  <label>選択肢
+		  <select x-model="select">
+			  <option value="">-</option>
+			  <option value="hoge">hoge</option>
+		  </select>
+			  
+	  </label>
+	  <template x-if="select == 'hoge'">
+		  <label>テキスト: <input type="text"></label>
+	  </template>
+
+  </div>
+
+  <br/><hr>
+
+  <div x-data="{message: ''}">
+	  <input @input="message = $el.value">
+	  <p x-text="message"></p>
+  </div>
+
+  <br/><hr>
+
+  <div x-init="$store.message = '--init msg--'"></div>
+  <div x-data>
+	  <p x-text="$store.message"></p>
+  </div>
+
+  <br/><hr>
+
+
+  <div x-data="{
+	       message : 'Hello W',
+	       open : true,
+  }">
+	  <input 
+       		type="text"
+		:value="message"
+		:disabled="open"
+	  >
+  </div>
+
+  <br/><hr>
+
+  <div x-data="{ open:false }">
+	  <button @click="open = !open" 
+       		x-text="open ? 'Close' : 'Open'">
+	  </button><br/><br/>
+	  <template x-if="open">
+		<p x-init="alert('初期化!')">
+	  		要素が生成された
+		</p>
+	  </template>
+	  
+  </div>
+
+  <br/><hr>
+
+  <div x-data>
+	  <button @click="$refs.hoge.textContent='HogeHoge'">
+		  TestBtn
+	  </button>
+	  <P x-ref="hoge">...</p>
+	  
+  </div>
+
+  <br/><hr>
+
+  <div
+	x-data="{ count: 0 }"
+	x-init="$watch('count',(newV, oldV) => alert(`count was changed from ${oldV} to ${newV}`))"
+  >
+	  <button @click="count++">countUp</button>
+	  <p x-text="count"></p>
+  </div>
+
+  <br/><hr>
+
+  <div
+	x-data
+	@testevent="alert($event.detail.value)"
+  >
+    <button 
+	@click="$dispatch('testevent',{ value : 'hoge' })">
+	  TestBtn
+    </button>
+  </div>
+
+
+
+
+
+
+  <br/><hr>
+  <br/><hr>
+  
+
+</body>
+</html>
