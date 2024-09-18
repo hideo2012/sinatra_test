@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require './model'
+require 'redcarpet'
 #require 'json'
 
 =begin
@@ -10,6 +11,22 @@ Bundler.require
 
 configure do
   set :bind, '0.0.0.0'
+end
+
+helpers do
+  def markdown_option( mdfile )
+    render_options = {
+      no_links: true,
+      hard_wrap: true,
+    }
+    extensions = {
+      tables: true,
+      strikethrough: true,
+      fenced_code_blocks: true,
+    }
+    render = Redcarpet::Render::HTML.new( render_options )
+    markdown mdfile, extensions, render: render
+  end
 end
 
 get '/' do
@@ -35,6 +52,10 @@ end
 get '/erb_and_md' do
   #erb :erb_and_md_page, :locals => { :md => markdown(:erb_and_md_page) }
   erb :erb_and_md_page 
+end
+
+get '/mdtest' do
+  markdown_option :md_page
 end
 
 get '/message' do
