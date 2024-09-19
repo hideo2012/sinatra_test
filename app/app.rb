@@ -13,6 +13,14 @@ configure do
   set :bind, '0.0.0.0'
 end
 
+class CustomRedcarpet < Redcarpet::Render::HTML
+  def table( header, body )
+    #%(<table class='markdown-table-default'>#{header}#{body}</table>)
+    %(<table border="1">#{header}#{body}</table>)
+  end
+end
+
+
 helpers do
   def markdown_option( mdfile )
     render_options = {
@@ -24,7 +32,9 @@ helpers do
       strikethrough: true,
       fenced_code_blocks: true,
     }
-    render = Redcarpet::Render::HTML.new( render_options )
+
+    #render = Redcarpet::Render::HTML.new( render_options )
+    render = CustomRedcarpet.new( render_options )
     markdown mdfile, extensions, render: render
   end
 end

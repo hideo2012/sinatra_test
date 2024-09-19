@@ -1,3 +1,16 @@
+<link rel="stylesheet" type="text/css" href="/css/table_custom.css"></link>
+<style>
+/*
+	table { 
+		border-collapse: collapse; 
+		width: 300;
+	}
+	table th, table td { border: solid 1px black; } 
+	table thead { background-color: lightgrey; }
+*/
+</style>
+
+
 # this is views/erb_and_md.md 
 ## Hello world
 ### hello
@@ -26,7 +39,7 @@ _naname_
  1. three two
 
 a|b|c|
-:---:|:---|---:|
+:---:|:---:|:---:|
 10000|20000|30000|
 xxx|yyy|zzz|
 
