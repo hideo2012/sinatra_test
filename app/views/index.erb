@@ -23,89 +23,70 @@
   <h2><%= Time.now %></h2>
   <p><i>click the Link below </i></p>
 
-  <div>
+  <div
+    hx-swap="innerHTML" 
+    hx-target="#target"
+  >
     <ul>
       <li>
         <a class="link"
            hx-get="/hello" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >Hello</a>
       </li>
       <li>
         <a class="link"
            hx-get="/mdtest" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >Markdown Page</a>
       </li>
       <li>
         <a class="link"
            hx-get="/alpine_1.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >Alpine Test 1</a>
       </li>
       <li>
         <a class="link"
            hx-get="/alpine_2.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >Alpine Test 2</a>
       </li>
       <li>
         <a class="link"
            hx-get="/alpine_3.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >Alpine Test 3</a>
       </li>
 
       <li>
         <a class="link"
            hx-get="/htmx_test.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >HTMX Test  </a>
       </li>
 
       <li>
         <a class="link"
            hx-get="/htmx_select.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >HTMX Test Select </a>
       </li>
 
       <li>
         <a class="link"
            hx-get="/htmx_validate.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >HTMX validate Test </a>
       </li>
 
       <li>
         <a class="link"
            hx-get="/htmx_destroy.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >HTMX destroy Test ( with sweet alert )</a>
       </li>
 
       <li>
         <a class="link"
            hx-get="/htmx_oob.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >HTMX oob  plural update</a>
       </li>
 
       <li>
         <a class="link"
            hx-get="/modal_test.html" 
-           hx-swap="innerHTML" 
-           hx-target="#target"
         >Modal Test (HTML5) </a>
       </li>
 
