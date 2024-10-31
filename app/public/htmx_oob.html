@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="HTMXのテスト">
-  <script src="https://unpkg.com/htmx.org@1.9.12"
-    integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
-    crossorigin="anonymous"></script>
-  <title>HTMXテスト oob 複数箇所更新</title>
-</head>
-<body>
+<div>
   <h1>HTMXテスト 複数箇所更新</h1>
-
   <div>
     <button 
     hx-get="/htmx/oob1"
@@ -33,16 +20,11 @@
     hx-select-oob="#status3,#status4"
     > 送信 2 </button>
   </div>
-
   <!--    
     hx-select-oob="#status3:afterbegin"
     hx-select-oob="#status3,#status4"
     hx-swap="outerHTML"
   -->
-
   <div id="status3">結果：未送信..3</div>
   <div id="status4">結果：未送信test..4</div>
-
-</body>
-
-</html>
+</div>

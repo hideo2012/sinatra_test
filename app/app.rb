@@ -40,6 +40,10 @@ helpers do
 end
 
 get '/' do
+  erb :index
+end
+
+get '/hello' do
   'How are you?'
 end
 
@@ -93,7 +97,8 @@ get '/users' do
 end
 
 get '/htmx' do
-  erb '/htmx/htmx_index'.to_sym
+  #erb '/htmx/htmx_index'.to_sym
+  erb :'/htmx/htmx_index'
 end
 
 get '/htmx/food' do
@@ -125,7 +130,9 @@ get '/htmx/oob2' do
   erb '/htmx/oob2'.to_sym
 end
 
-
+post '/htmx/validate_post' do
+  "validate OK ! params >> #{ params[:example] }"
+end
 
 
 

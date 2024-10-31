@@ -1,39 +1,9 @@
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Modal Test</title>
-		<style>
-#modal::backdrop { 
-	background-color: rgba(255, 0,0,0.2);
-}
-		</style>
-
-	<script>
-		const openModal = () => { 
-			document.getElementById('modal').showModal();
-		}
-		const closeModal = () => { 
-			document.getElementById('modal').close();
-		}
-
-
-		const openDialog = () => { 
-			document.getElementById('dialog').show();
-		}
-		const closeDialog = () => { 
-			document.getElementById('dialog').close();
-		}
-
-	</script>
-	</head>
-
-	<body>
+<div>
 		<button onClick={openDialog()}> Opne Dialog </button>
 		<dialog id="dialog">
 			<p>This is dialog.</p>
 			<button onClick={closeDialog()}> Close </button>
 		</dialog>
-
 
 		<button onClick={openModal()}> Opne Modal </button>
 		<dialog id="modal">
@@ -45,7 +15,27 @@
 		<div id="popover_content" popover style="background-color: yellow;">
 			<p>HTMLのみでモーダルが表示されました</p>
 		</div>
+</div>
 
-	</body>
-</html>
+<style>
+#modal::backdrop { 
+	background-color: rgba(255, 0,0,0.2);
+}
+</style>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	const openModal = () => { 
+		document.getElementById('modal').showModal();
+	}
+	const closeModal = () => { 
+		document.getElementById('modal').close();
+	}
+
+	const openDialog = () => { 
+		document.getElementById('dialog').show();
+	}
+	const closeDialog = () => { 
+		document.getElementById('dialog').close();
+	}
+</script>

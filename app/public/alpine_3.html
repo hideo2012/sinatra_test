@@ -1,0 +1,77 @@
+<div>
+  <h1>Alpine.js と管理画面での利用例</h1>
+  <!-- https://tech.yappli.io/entry/alpinejs -->
+
+  <form x-data="{ rows: [] }">
+	<button  
+		@click.prevent="rows.push({ field: '' });" >
+		行追加</button>
+	
+	<input type="submit">
+	<br /><br />
+
+	<template x-for="(row, index) in rows">
+	  <div>
+	  <label><span x-text="index">番目のフィールド:</span></label>
+	  <input type="text" x-model="row.field" />
+	  <button @click.prevent="rows.splice(index, 1);">
+		  行削除</button>
+	  </div>
+	</template>
+	<br />
+  </form>
+
+  <hr />
+
+  <!-- # validation version --> 
+  <form 
+       x-data="{ errors: [], rows: [{ field: '' }], num: 0 }" 
+       @submit="submitForm">
+
+    <button  
+      @click.prevent="rows.push({ field: '' })" >
+      行追加
+    </button>
+    <input type="submit" />
+
+  <!-- # validation error --> 
+	  <div x-show="errors.length > 0">
+      error
+		  <ul style="color: red;">
+			  <template x-for="error in errors">
+          <li x-text="error"></li>
+			  </template>
+		  </ul>
+	  </div>
+
+  <!-- # contents --> 
+    <ul>
+	    <template x-for="(row, index) in rows">
+        <li>
+          <label><span x-text="`${Number(index)+1}`"></span></label>
+          <input type="text" x-model="row.field" />
+          <button @click.prevent="rows.splice(index, 1)">
+            Delete
+          </button>
+        </li>
+      </template>
+    </ul>
+ </form>
+
+ <br /><br />
+</div>
+
+<script>
+      function submitForm() {
+        this.errors = [];
+        this.rows.forEach( (row, index) => {
+          if (row.field !== 'hoge') {
+            this.errors.push(
+           `${index}番目のテキストがhogeではありません` );
+          }
+        });
+        if ( this.errors.length > 0 ) {
+          event.preventDefault();
+        }
+      }
+</script>

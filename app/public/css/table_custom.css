@@ -12,6 +12,7 @@ table td {
 }
 
 table thead {
-	background-color: lightgrey;
+	/*background-color: lightgrey;*/
+	background-color: yellow;
 }
 
