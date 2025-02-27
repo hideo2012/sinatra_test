@@ -1,31 +1,16 @@
 <div>
-  <h1>Alpine.js と管理画面での利用例</h1>
+  <h1>Alpine.js x-for エラーチェック</h1>
   <!-- https://tech.yappli.io/entry/alpinejs -->
 
-  <form x-data="{ rows: [] }">
-	<button  
-		@click.prevent="rows.push({ field: '' });" >
-		行追加</button>
-	
-	<input type="submit">
-	<br /><br />
-
-	<template x-for="(row, index) in rows">
-	  <div>
-	  <label><span x-text="index">番目のフィールド:</span></label>
-	  <input type="text" x-model="row.field" />
-	  <button @click.prevent="rows.splice(index, 1);">
-		  行削除</button>
-	  </div>
-	</template>
-	<br />
-  </form>
-
-  <hr />
+  <p>
+    <a href=" https://tech.yappli.io/entry/alpinejs" target="_blank">
+     管理画面での利用例
+    </a>
+  </p>
 
   <!-- # validation version --> 
   <form 
-       x-data="{ errors: [], rows: [{ field: '' }], num: 0 }" 
+       x-data="{ errors: [], rows: [], num: 0 }" 
        @submit="submitForm">
 
     <button  
@@ -56,9 +41,7 @@
         </li>
       </template>
     </ul>
- </form>
-
- <br /><br />
+  </form>
 </div>
 
 <script>
@@ -72,6 +55,13 @@
         });
         if ( this.errors.length > 0 ) {
           event.preventDefault();
+        } else {
+          event.preventDefault();
         }
       }
+
+  function addData() {
+    rows.push({ field: indata, sw: false })
+    }
+
 </script>

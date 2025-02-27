@@ -5,90 +5,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="HTMX and Alpinejs Test">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
 <script
   src="https://unpkg.com/htmx.org@1.9.12"
   integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
   crossorigin="anonymous">
 </script>
-<script defer src="https://unpkg.com/alpinejs"></script>
+<script defer src="https://unpkg.com/alpinejs@3.14.7/dist/cdn.min.js"></script>
 <style>
   .link { font-size: 120%; font-weight: bold; }
+  .active { color: red; }
 </style>
 
 <title>Index</title>
 </head>
 
 <body bgcolor="lightgray">
-  <h1>this is INDEX Page</h1>
+  <h1>this is INDEX Page...  sinatra_02</h1>
   <h2><%= Time.now %></h2>
   <p><i>click the Link below </i></p>
 
-  <div
+  <div>
+  <ul
     hx-swap="innerHTML" 
     hx-target="#target"
-  >
-    <ul>
-      <li>
-        <a class="link"
-           hx-get="/hello" 
-        >Hello</a>
-      </li>
-      <li>
-        <a class="link"
-           hx-get="/mdtest" 
-        >Markdown Page</a>
-      </li>
-      <li>
-        <a class="link"
-           hx-get="/alpine_1.html" 
-        >Alpine Test 1</a>
-      </li>
-      <li>
-        <a class="link"
-           hx-get="/alpine_2.html" 
-        >Alpine Test 2</a>
-      </li>
-      <li>
-        <a class="link"
-           hx-get="/alpine_3.html" 
-        >Alpine Test 3</a>
-      </li>
+    hx-on:click="htmx.takeClass(event.target, 'active')">
 
-      <li>
-        <a class="link"
-           hx-get="/htmx_test.html" 
-        >HTMX Test  </a>
-      </li>
+    <li class="link"
+       hx-get="/hello" >Hello</li>
+    
+    <li class="link"
+       hx-get="/mdtest" >Markdown Page</li>
+      
+    <li class="link"
+       hx-get="/alpine_1.html" >Alpine Test 1</li>
 
-      <li>
-        <a class="link"
-           hx-get="/htmx_select.html" 
-        >HTMX Test Select </a>
-      </li>
+    <li class="link"
+       hx-get="/alpine_2.html" >Alpine Test 2</li>
 
-      <li>
-        <a class="link"
-           hx-get="/htmx_validate.html" 
-        >HTMX validate Test </a>
-      </li>
+    <li class="link"
+       hx-get="/alpine_3.html" >Alpine Test 3</li>
 
-      <li>
-        <a class="link"
-           hx-get="/htmx_destroy.html" 
-        >HTMX destroy Test ( with sweet alert )</a>
-      </li>
+    <li class="link"
+       hx-get="/alpine_4.html" >Alpine Test 4 ( todo list ) </li>
 
-      <li>
-        <a class="link"
-           hx-get="/htmx_oob.html" 
-        >HTMX oob  plural update</a>
-      </li>
+    <li class="link"
+        hx-get="/modal_test.html">Alpine Modal  (and HTML5)</li> 
 
-      <li>
-        <a class="link"
-           hx-get="/modal_test.html" 
-        >Modal Test (HTML5) </a>
-      </li>
+    <li class="link"
+       hx-get="/htmx_test.html" >HTMX Test </li>
+
+    <li class="link"
+      hx-get="/htmx_select.html" >HTMX Test Select </li>
+      
+    <li class="link"
+      hx-get="/htmx_validate.html" >HTMX validate Test </li>
+
+    <li class="link"
+        hx-get="/htmx_destroy.html" >
+        HTMX destroy Test ( with sweet alert )</li>
+
+    <li class="link"
+      hx-get="/htmx_oob.html" >HTMX oob  plural update</li>
+
+    <li class="link"
+      hx-get="/htmx_dialogs.html" >HTMX Dialogs ( hx-prompt ) </li>
 
     </ul>
   </div>
@@ -97,43 +79,7 @@
 
   <div id="target" ></div>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  <script>
-    $(function() {
-         //alert('Hello jQuery Love');
-         $('.link').click(function(ev) {
-              $('.link').css('color', 'black');
-              $(this).css('color', 'red');
-            });
-    });
-/*
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('formdata', () => {
-        return {
-            errors: [],
-            rows: [{ field: '' }],
-            addRow() {
-              this.rows.push({ field: '' });
-            },
-            deleteRow(index) {
-              this.rows.splice(index, 1);
-            },
-            submitForm(event) {
-              this.errors = [];
-              this.rows.forEach( (row, index) => {
-                if (row.field !== 'hoge') {
-                  this.errors.push(
-                 `${index}番目のテキストがhogeではありません` );
-                }
-              });
-              if ( this.errors.length > 0 ) {
-                event.preventDefault();
-              }
-            },
-           } // end of return
-         }); // end of Alpine.data
-    });
-  */
   </script>
 </body>
 </html>

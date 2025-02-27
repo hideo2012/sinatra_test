@@ -1,0 +1,13 @@
+<div>
+  <a href="https://htmx.org/examples/dialogs" 
+    target="_blank">htmx Dialogs</a>
+  <button style=""
+          hx-post="/htmx/dialogs"
+          hx-prompt="文字を入力してね！"
+          hx-confirm="Are you sure?"
+          hx-target="#response">
+    Prompt Submission
+  </button>
+  <div id="response"></div>
+</div>
+

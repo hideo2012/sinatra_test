@@ -1,0 +1,83 @@
+<div>
+<h1>Alpine.js x-forを利用したTODOリスト</h1>
+<div x-data="{ 
+    rows: [], indata: '',
+    push() { 
+      if (this.indata.trim().length === 0 ) return;
+      this.rows.push({ field: this.indata,
+                  done: false, edit: false });
+      this.indata = '';
+    },
+    done_todo(i) { this.rows[i].done = true; },
+      
+    edit_todo(i) { 
+      this.rows[i].edit = true; 
+      $nextTick( () => document.querySelector(`#input${i}`).focus() );
+    },
+    close_edit(i) { this.rows[i].edit = false },
+
+    delete_todo(i) {
+      if (window.confirm('Realy?')) this.rows.splice(i, 1);
+    },
+
+    get cnt_todo() { return this.rows.length },
+    get cnt_done() { 
+      return this.rows.filter(row => row.done === true).length },
+  }">
+
+  <h3>
+    Todo: <span x-text="cnt_todo"></span> /
+    Done: <span x-text="cnt_done"></span>
+  </h3>
+
+  <input type="text" x-model="indata" @keyup.enter="push" />
+	<button  @click="push">追加</button>
+
+  <ol>
+    <template x-for="(row, i) in rows">
+      <li> 
+        <input type="checkbox" x-model="row.done">
+        
+        <span x-text="row.field"  class="todo"
+                                  :class="{'todo-done': row.done}"
+              x-show="! row.edit" 
+              @dblclick="edit_todo(i)"
+        ></span>
+        
+        <input type="text" class="todo-edit"
+                           :id=`input${i}`
+              x-model="row.field"
+              x-show="row.edit"  
+              @keyup.enter="close_edit(i)" 
+              @click.outside="close_edit(i)" />
+
+        <!-- <button @click="done_todo(i)">Done</button> -->
+        <button @click="delete_todo(i)"> X</button> 
+        <!-- <button @click="edit_todo(i)">Edit</button> -->
+      </li>
+    </template>
+  </ol>
+</div><!-- x-data -->
+
+ <br /><br />
+</div>
+
+<style>
+  .todo { 
+    display: inline-block;
+    width: 200px;
+    font-weight: bold; 
+    color: blue; 
+    font-size: 20px; 
+  }
+  .todo-done { 
+    text-decoration: line-through; 
+    color: gray; 
+  }
+  .todo-edit {
+    width: 200px;
+  }
+</style>
+<script>
+  // alert('hello')
+</script>

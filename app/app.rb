@@ -134,5 +134,10 @@ post '/htmx/validate_post' do
   "validate OK ! params >> #{ params[:example] }"
 end
 
+post '/htmx/dialogs' do
+  @headers = request.env.select { |k, v| k.start_with?('HTTP_HX_') }
+  puts @headers
+  erb '/htmx/dialogs'.to_sym
+end
 
 

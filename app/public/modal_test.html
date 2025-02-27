@@ -1,41 +1,120 @@
+<!--div class="click_ng"-->
 <div>
-		<button onClick={openDialog()}> Opne Dialog </button>
-		<dialog id="dialog">
-			<p>This is dialog.</p>
-			<button onClick={closeDialog()}> Close </button>
+		<button onClick="openDialog('dialog-1', 'dialog')"> 
+      Opne Dialog </button>
+		<button onClick="openDialog('dialog-1', 'modal')"> 
+      Opne Modal </button>
+
+		<dialog id="dialog-1">
+      <div class="modal-container">
+			  <p>This is dialog.</p>
+			  <button onClick="closeDialog('dialog-1')"> 閉じる </button>
+      </div>
 		</dialog>
 
-		<button onClick={openModal()}> Opne Modal </button>
-		<dialog id="modal">
-			<p>This is modal.</p>
-			<button onClick={closeModal()}> Close </button>
+    <br /><br />
+
+    <button onClick="openDialog('dialog-2', 'modal')">
+      Open Modal (form method=dialog) </button>
+
+		<dialog id="dialog-2">
+      <form class="modal-container" method="dialog">
+			  <p>This is modal.2</p>
+        <p>ボタンクリックでダイアログが閉じる</p>
+        <button type="submit">閉じる</button>
+      </form>
 		</dialog>
 
-		<button type="button" popovertarget="popover_content" >シンプルモーダル表示</button>
+    <br /><br />
+
+    <!-- popover  -->
+		<button type="button" popovertarget="popover_content" 
+      >popover modal表示</button>
 		<div id="popover_content" popover style="background-color: yellow;">
-			<p>HTMLのみでモーダルが表示されました</p>
+			<p> this is modal </p>
 		</div>
+
+    <br /><br />
+
+    <!--  by AlpineJS --->
+    <div x-data="{ open: false }">
+      <button 
+         @click="open = !open"
+        >Open Alpine Modal  </button>
+
+      <div class="modal_container" x-show="open">
+        <div class="modal_main" @click.outside="open = false">
+          <h2>This is Alpine modal.</h2>
+          <button @click="open = false"> Close </button>
+        </div>
+      </div>
+    </div>
+
+    <br /><br />
 </div>
 
 <style>
-#modal::backdrop { 
-	background-color: rgba(255, 0,0,0.2);
+
+body:has([popover]:popover-open) {
+    pointer-events: none;
 }
+[popover]:popover-open {
+    pointer-events: auto;
+}
+
+dialog::backdrop , 
+#popover_content::backdrop
+{
+	background: rgb(0 0 0 / 0.5);
+}
+  .modal_container {
+    /* back  */
+    background-color: rgb(0 0 0 / 0.5);
+    position: fixed;
+    inset: 0;
+  }
+  .modal_main {
+    /* front */
+    background-color: white;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    padding: 20px;
+    /*width: 30%;
+    height: 30%;*/
+    width: 300px;
+    height: 200px;
+  }
+
+  .click_ng {
+    pointer-events: none;
+  }
+
 </style>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-	const openModal = () => { 
-		document.getElementById('modal').showModal();
-	}
-	const closeModal = () => { 
-		document.getElementById('modal').close();
+  const dialog_list = document.querySelectorAll("dialog");
+  dialog_list.forEach( dialog => {
+      //console.log('----' + dialog.id);
+      dialog.addEventListener('click', (e) => {
+        if (e.target.closest('.modal-container') === null)
+          dialog.close();
+      });
+  });
+
+	const openDialog = (id, dialog_or_modal) => { 
+		const dialog = document.getElementById(id);
+    if (dialog === null ) { 
+          alert('-- id notfound ---');
+        return;
+    }
+    if (dialog_or_modal === 'dialog') dialog.show();
+    else if (dialog_or_modal === 'modal') dialog.showModal();
+    else alert('--- only dialog or modal ---');
 	}
 
-	const openDialog = () => { 
-		document.getElementById('dialog').show();
+	const closeDialog = (id) => { 
+		document.getElementById(id).close();
 	}
-	const closeDialog = () => { 
-		document.getElementById('dialog').close();
-	}
+
 </script>
