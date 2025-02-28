@@ -30,7 +30,7 @@
   <ul
     hx-swap="innerHTML" 
     hx-target="#target"
-    hx-on:click="htmx.takeClass(event.target, 'active')">
+    hx-on:click="htmx.takeClass(event.target.closest('ul li'), 'active')">
 
     <li class="link"
        hx-get="/hello" >Hello</li>
